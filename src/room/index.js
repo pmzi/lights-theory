@@ -1,14 +1,10 @@
 import { ThreeBasics } from "../shared/ThreeToolbox";
-import Sphere from './Sphere'
-import Lamp from "./Lamp";
+import Model from "./Model";
 
 class RoomTHREE extends ThreeBasics {
 
     setup () {
-        this.append(new Sphere())
-        this.append(new Lamp({ color: 0x0000ff, speed: 0.1 }))
-        this.append(new Lamp({ color: 0xff0000, speed: -0.1 }))
-        this.append(new Lamp({ color: 0xffffff, speed: 0 }))
+        this.append(new Model())
     }
 
     changes () {
