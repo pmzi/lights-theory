@@ -1,10 +1,12 @@
 .main{
   width: 100vw;
   height: 100vh;
-  position: fixed;
 
   &__content{
     width: 100vw;
     height: 100vh;
+
+    position: fixed;
+    pointer-events: none;
   }
 }
