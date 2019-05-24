@@ -1,13 +1,13 @@
-import ThreeBasics from "./ThreeBasics";
+import { ThreeBasics } from "../shared/Three";
 
 class RoomTHREE extends ThreeBasics {
 
     setup () {
-        console.log('hey')
+        
     }
 
     changes () {
-        console.log(this.time)
+        
     }
 
 }

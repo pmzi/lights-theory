@@ -13,11 +13,11 @@ class ThreeBasics {
         // Our main camera
         this.camera = new THREE.PerspectiveCamera(45, 1, 0.1, 1000)
         this.scene.add(this.camera);
-
+        
         // objects array
         this.objects = []
     }
-
+    
     init (canvas, force = false) {
         if (!this.initialized || force) {
             // Main renderer
@@ -47,8 +47,8 @@ class ThreeBasics {
         for (const obj of this.objects) if (obj.changes) obj.changes();
     }
 
-    setup = () => {}
-    changes = () => {}
+    setup () {}
+    changes () {}
     
     render = () => {
         this._changes();
