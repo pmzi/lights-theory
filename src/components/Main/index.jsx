@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Text from '../Text/index';
-import Room from '../Room/index';
+import TextContainer from './TextContainer';
+import Room from './Room/index';
 
 import './style.scss';
 
@@ -9,7 +9,7 @@ function Main(){
   return (
     <main className="main">
       <Room />
-      <Text />
+      <TextContainer />
     </main>
   );
 }
