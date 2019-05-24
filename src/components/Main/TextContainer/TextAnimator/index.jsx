@@ -2,8 +2,6 @@ import React from 'react';
 
 import Text from './Text/index';
 
-const Theatre = window.Theatre;
-
 class TextAnimator extends React.PureComponent{
 
   state = {
