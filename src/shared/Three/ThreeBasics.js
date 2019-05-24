@@ -1,17 +1,18 @@
-const THREE = window.THREE;
-
 class ThreeBasics {
 
     constructor () {
+        // Define THREE as a easy-to-catch variable
+        this.$ = window.THREE;
+
         // Class variables
         this.time = 0;
         this.initialized = false;
 
         // Creating main scene
-        this.scene = new THREE.Scene()
+        this.scene = new this.$.Scene()
 
         // Our main camera
-        this.camera = new THREE.PerspectiveCamera(45, 1, 0.1, 1000)
+        this.camera = new this.$.PerspectiveCamera(45, 1, 0.1, 1000)
         this.scene.add(this.camera);
         
         // objects array
@@ -21,7 +22,7 @@ class ThreeBasics {
     init (canvas, force = false) {
         if (!this.initialized || force) {
             // Main renderer
-            this.renderer = new THREE.WebGLRenderer({ canvas });
+            this.renderer = new this.$.WebGLRenderer({ canvas });
 
             // Fixing size
             window.addEventListener('resize', this.reFixSize);
