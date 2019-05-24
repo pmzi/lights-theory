@@ -1,5 +1,10 @@
 .main{
   width: 100vw;
   height: 100vh;
-  position: relative;
+  position: fixed;
+
+  &__content{
+    width: 100vw;
+    height: 100vh;
+  }
 }

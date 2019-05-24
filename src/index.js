@@ -5,7 +5,7 @@ import * as serviceWorker from './serviceWorker';
 
 import './stylesheets/main.scss';
 
-ReactDOM.render(<Main />, document.getElementById('root'));
+ReactDOM.render(<Main animationTime={10000} />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

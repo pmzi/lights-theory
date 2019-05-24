@@ -5,11 +5,19 @@ import Room from './Room/index';
 
 import './style.scss';
 
-function Main(){
+function Main({ animationTime }){
+  const height = animationTime;
+
   return (
-    <main className="main">
-      <Room />
-      <TextContainer />
+    <main style={
+      {
+        height: `${height}px`,
+      }
+    } className="main">
+      <div className="main__content">
+        <Room />
+        <TextContainer />
+      </div>
     </main>
   );
 }
