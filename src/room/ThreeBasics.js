@@ -1,3 +1,5 @@
+const THREE = window.THREE;
+
 class ThreeBasics {
 
     constructor () {
