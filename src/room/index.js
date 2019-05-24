@@ -1,4 +1,4 @@
-import ThreeBasics from "./ThreeBasics";
+import { ThreeBasics } from "../shared/Three";
 
 class RoomTHREE extends ThreeBasics {
 
