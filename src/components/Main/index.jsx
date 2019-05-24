@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Text from '../Text';
-import Room from './Room';
+import Text from '../Text/index';
+import Room from '../Room/index';
 
 import './style.scss';
 
