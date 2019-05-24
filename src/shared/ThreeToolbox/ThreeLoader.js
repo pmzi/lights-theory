@@ -53,13 +53,14 @@ class ThreeLoader {
 
 class ThreeModel extends ThreeObject {
 
+    listeners = {
+        progress: [],
+        loaded: [],
+        error: []
+    }
+
     setup () {
         this._objectType = null;
-        this.listeners = {
-            progress: [],
-            loaded: [],
-            error: []
-        }
         const $ = this.$;
         const { url, manager } = this.props;
         const splitted = url.split('.')
@@ -81,40 +82,25 @@ class ThreeModel extends ThreeObject {
         }
     }
 
-    on (type, cb) {
-        if (type in this.listeners) {
-            this.listeners[type].push(cb)
-        } else {
-            // TODO: show error
-        }
-        return this;
-    }
-
-    _dispatch (type, data) {
-        if (type in this.listeners) {
-            this.listeners[type].forEach((cb) => cb(data));
-        }
-    }
-
-    init () {
-        const { url } = this.props;
-        this.loader.load(url, this.onLoad, this.onProgress, this.onError)
-    }
-
-    onProgress = (xhr) => {
+    onProgress (xhr) {
         if (xhr.lengthComputable) {
             const percent = xhr.loaded / xhr.total * 100;
             this._dispatch('progress', { percent });
         }
     }
 
-    onError = (err) => {
+    onError (err) {
         this._dispatch('error', err);
     }
 
-    onLoad = (object) => {
+    onLoad (object) {
         this._dispatch('loaded', object);
         this.object = object;
+    }
+
+    init () {
+        const { url } = this.props;
+        this.loader.load(url, this.onLoad.bind(this), this.onProgress.bind(this), this.onError.bind(this))
     }
 
 }
