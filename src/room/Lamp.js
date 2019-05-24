@@ -10,7 +10,7 @@ class Lamp extends ThreeObject {
 
   changes () {
     const { speed } = this.props;
-    this.object.position.x += speed;
+    this.object.position.y += speed;
   }
 
 }
