@@ -3,6 +3,7 @@ class ThreeBasics {
     constructor () {
         // Class variables
         this.time = 0;
+        this.initialized = false;
 
         // Creating main scene
         this.scene = new THREE.Scene()
@@ -12,30 +13,39 @@ class ThreeBasics {
         this.scene.add(this.camera);
 
         // objects array
-        this.objects
+        this.objects = []
     }
 
-    init (canvas) {
-        this.renderer = new THREE.WebGLRenderer({ canvas });
+    init (canvas, force = false) {
+        if (!this.initialized || force) {
+            // Main renderer
+            this.renderer = new THREE.WebGLRenderer({ canvas });
 
-        // Fixing size
-        window.addEventListener('resize', this.reFixSize);
-        this.reFixSize();
+            // Fixing size
+            window.addEventListener('resize', this.reFixSize);
+            this.reFixSize();
 
-        // Starting render function
-        this.render()
+            // Very first setup
+            this.setup();
+
+            // Starting render function
+            this.render();
+            this.initialized = true;
+        }
     }
 
-    registerObject = (obj) => {
+    append = (obj) => {
+        if (obj.object) this.scene.add(obj.object)
         this.objects.push(obj);
     }
 
     _changes = () => {
         this.time++;
         this.changes()
-        for (const obj of this.objects) obj.changes();
+        for (const obj of this.objects) if (obj.changes) obj.changes();
     }
 
+    setup = () => {}
     changes = () => {}
     
     render = () => {

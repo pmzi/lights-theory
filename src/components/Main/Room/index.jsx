@@ -1,4 +1,5 @@
 import React from 'react';
+import RoomTHREE from '../../../room'
 
 import './style.scss';
 
@@ -7,10 +8,11 @@ class Room extends React.Component {
     constructor (props) {
         super(props);
         this.canvas = React.createRef();
+        this.room = new RoomTHREE();
     }
 
     componentDidMount () {
-        console.log(this.canvas.current)
+        this.room.init(this.canvas.current)
     }
 
     render () {
