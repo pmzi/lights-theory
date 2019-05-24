@@ -1,9 +1,10 @@
-import { ThreeBasics } from "../shared/Three";
+import { ThreeBasics } from "../shared/ThreeToolbox";
+import Box from './Box'
 
 class RoomTHREE extends ThreeBasics {
 
     setup () {
-        
+        this.append(new Box())
     }
 
     changes () {
