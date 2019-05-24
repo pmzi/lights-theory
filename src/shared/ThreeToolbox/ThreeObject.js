@@ -9,9 +9,9 @@ class ThreeObject {
     constructor () {
         // Define THREE as a easy-to-catch variable
         this.$ = window.THREE;
-
+        
+        this.setup();
         this.init();
-        this.setup()
     }
 
     init () {}
