@@ -1,16 +1,26 @@
 import React from 'react';
 
-import Text from './Text/index';
+import TextAnimator from './TextAnimator';
+
+const Theatre = window.Theatre;
 
 class TextContainer extends React.PureComponent{
-  componentDidMount(){
-    const project = window.Theatre.getProject('Lights Theory');
-  }
+  project = Theatre.getProject('Lights Theory');
+  timelineName = "Main Texts Timeline";
+  mainTimeline = this.project.getTimeline(this.timelineName);;
+
   render(){
     return (
-      <Text>
-        Hey Alireza!
-      </Text>
+      <React.Fragment>
+        <TextAnimator
+          name="WelcomeMessage"
+          timeline={this.mainTimeline}
+          top={10}
+          left={10}
+        >
+          Hey Alireza!
+        </TextAnimator>
+      </React.Fragment>
     );
   }
 }
