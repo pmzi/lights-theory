@@ -7,7 +7,13 @@ const Theatre = window.Theatre;
 class TextContainer extends React.PureComponent{
   project = Theatre.getProject('Lights Theory');
   timelineName = "Main Texts Timeline";
-  mainTimeline = this.project.getTimeline(this.timelineName);;
+  mainTimeline = this.project.getTimeline(this.timelineName);
+
+  componentDidMount(){
+    window.addEventListener('scroll', ()=>{
+      this.mainTimeline.time = window.scrollY * 2;
+    });
+  }
 
   render(){
     return (
