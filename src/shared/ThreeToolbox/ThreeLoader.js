@@ -1,4 +1,4 @@
-import OBJLoader from '../shared/ThreeToolbox/THREE.OBJLoader'
+import ThreeObject from './ThreeObject';
 
 const THREE = window.THREE;
 const TYPES = {
@@ -6,16 +6,47 @@ const TYPES = {
     TEXTURE: 'texture'
 }
 
-class ThreeLoader extends ThreeObject {
+class ThreeLoader {
 
     constructor () {
-        const cb = () => {};
-        this.manager = new THREE.LoadingManager(cb);
+        this.listeners = {
+            started: [],
+            loaded: [],
+            progress: [],
+            error: []
+        }
+        this.manager = new THREE.LoadingManager(object => {
+            this._dispatch('loaded', object)
+        });
+        this.manager.onStart = (url, itemsLoaded, itemsTotal) => {
+            this._dispatch('started', { url, itemsLoaded, itemsTotal })
+        };
+        this.manager.onProgress = ( url, itemsLoaded, itemsTotal ) => {
+            this._dispatch('progress', { url, itemsLoaded, itemsTotal })
+        };
+        this.manager.onError = (url) => {
+            this._dispatch('error', { url })
+        };
     }
     
     load (url) {
         const { manager } = this;
         return new ThreeModel({ url, manager });
+    }
+
+    on (type, cb) {
+        if (type in this.listeners) {
+            this.listeners[type].push(cb)
+        } else {
+            // TODO: show error
+        }
+        return this;
+    }
+
+    _dispatch (type, data) {
+        if (type in this.listeners) {
+            this.listeners[type].forEach((cb) => cb(data));
+        }
     }
 
 }
@@ -33,10 +64,10 @@ class ThreeModel extends ThreeObject {
         const { url, manager } = this.props;
         const splitted = url.split('.')
         this.ext = splitted[splitted.length - 1].toLowerCase();
-        switch (ext) {
+        switch (this.ext) {
             case 'obj':
                 this._objectType = TYPES.OBJECT;
-                this.loader = new OBJLoader(manager);
+                this.loader = new $.OBJLoader(manager);
                 break;
             case 'jpg':
             case 'png':

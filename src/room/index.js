@@ -4,7 +4,7 @@ import Model from "./Model";
 class RoomTHREE extends ThreeBasics {
 
     setup () {
-        this.append(new Model())
+        this.append(new Model({ url: '/models/statue.obj' }))
     }
 
     changes () {
