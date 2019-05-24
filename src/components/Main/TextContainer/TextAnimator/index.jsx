@@ -19,12 +19,18 @@ class TextAnimator extends React.PureComponent{
 
     const textAnimatorObject = timeline.getObject(name, {}, {
       props: {
-        // x: {
-        //   type: 'number',
-        // },
-        // y: {
-        //   type: 'number',
-        // },
+        left: {
+          type: 'number',
+        },
+        right: {
+          type: 'number',
+        },
+        top: {
+          type: 'number',
+        },
+        bottom: {
+          type: 'number',
+        },
         opacity: {
           type: 'number',
         },
