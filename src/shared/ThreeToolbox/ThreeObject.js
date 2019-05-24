@@ -6,9 +6,10 @@ class ThreeObject {
     material = null;
     object = null;
 
-    constructor () {
+    constructor (props = {}) {
         // Define THREE as a easy-to-catch variable
         this.$ = window.THREE;
+        this.props = props;
         
         this.setup();
         this.init();
