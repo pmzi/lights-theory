@@ -40,6 +40,7 @@ class ThreeBasics {
     append = (obj) => {
         if (obj.object) this.scene.add(obj.object)
         this.objects.push(obj);
+        obj.scene = this;
     }
 
     _changes = () => {
